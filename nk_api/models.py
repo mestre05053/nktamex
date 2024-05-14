@@ -14,6 +14,8 @@ class Api(models.Model):
     codigopostal = models.CharField(db_column='CodigoPostal', max_length=10, db_collation='SQL_Latin1_General_CP1_CI_AS', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
+        # ordering le indica al ORm que cuando se consulte ordene por el campo que se le paso en la tupla. 
+        ordering = ('nombre',)
         managed = False
         db_table = 'nk_tb_crmAPI'
     

@@ -1,0 +1,36 @@
+
+{% block content %}
+<h1>RECORDS</h1>
+			<br>
+				<table class="table table-striped-columns table-hover table-bordered">
+				  <thead class="table-dark">
+				    <tr>
+				      <th scope="col">Nombre</th>
+				      <th scope="col">Email</th>
+				      <th scope="col">Telefono</th>
+				      <th scope="col">Direccion</th>
+				      <th scope="col">Ciudad</th>
+				      <th scope="col">Estado</th>
+				      <th scope="col">Numenro postal</th>
+				    </tr>
+				  </thead>
+				  <tbody> 
+    				{% if api %}
+    					{% for record in api %}	
+						<tr>
+					      <td>{{record.0}}</td>
+					      <td>{{record.1}}</td>
+					      <td>{{record.email}}</td>
+					      <td>{{record.telefono}}</td>
+					      <td>{{record.direccion}}</td>
+					      <td>{{record.ciudad}}</td>
+					      <td>{{record.estado}}</td>
+					      <td>{{record.codigopostal}}</td>
+					    </tr>
+					    {% endfor %}
+					{% endif %}
+				  </tbody>
+				</table>
+					
+					<br>
+{% endblock %}					

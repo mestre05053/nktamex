@@ -173,9 +173,9 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 @api_view(['GET', 'POST'])
-def snippet_list(request):
+def snippet_list(request, format=None):
     """
-    List all code user, or create a new user.
+    Muestra todos los usuarios y permite crear usuarios.
     """
     if request.method == 'GET':
         users = Api.objects.all()
@@ -190,7 +190,7 @@ def snippet_list(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'PUT', 'DELETE'])
-def snippet_detail(request, pk):
+def snippet_detail(request, pk, format=None):
     """
     Retrieve, update or delete an user.
     """

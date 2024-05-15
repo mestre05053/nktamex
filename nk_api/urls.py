@@ -16,4 +16,11 @@ urlpatterns = [
     #### ART ####
     path('art-get/', views.ArtGet.as_view(), name='art-get'),
     path('art-post/', views.ArtPost.as_view(), name='art-post'),
+    ###### Learning from book Django_RESTful_Web_Services_The_Easiest_Way_to_Bui...
+    path('list-users',views.user_list, name='list-users'),
+    path('user-detail/<int:pk>',views.user_detail, name='user-detail'),
+    #### THIS IS THE WAY #### Learning www.django-rest-framework.org/tutorial/2-requests-and-responses/
+    path('snippet',views.snippet_list, name='snippet'),
+    path('snippet/<int:pk>',views.snippet_detail, name='snippet_detail'),
+ 
 ]

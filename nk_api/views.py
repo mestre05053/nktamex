@@ -1,16 +1,19 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
-
+from django.contrib.auth.models import User
 from rest_framework import generics, permissions
-from .serializers import APiSerializer, ArtSerializer, UserDataSerializer
 
-from . models import Api, Art
+
+
+#from .serializers import APiSerializer, ArtSerializer, UserDataSerializer, UserSerializer
+from nk_api.serializers import UserDataSerializer, UserSerializer
+from nk_api.models import Api, Art
 
 # Create your views here.
 
-from django.http import HttpResponse
 
-class RecordUpdateApi(generics.UpdateAPIView):
+'''class RecordUpdateApi(generics.UpdateAPIView):
     queryset = Api.objects.all()
     serializer_class = APiSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -26,20 +29,7 @@ class RecordCreatedApi(generics.CreateAPIView):
 class LISTAPI(generics.ListAPIView):
     queryset = Api.objects.all()
     serializer_class = APiSerializer
-    http_method_names = ['get']
-
-####### ART #############
-    
-class ArtGet(generics.ListAPIView):
-    queryset = Art.objects.all()
-    serializer_class = ArtSerializer
-    http_method_names = ['get']    
-
-class ArtPost(generics.CreateAPIView):
-    queryset = Art.objects.all()
-    serializer_class = ArtSerializer
-    permission_classes = [permissions.IsAuthenticated]
-    http_method_names = ['post']
+    http_method_names = ['get']'''
 
 def index(request):
     return HttpResponse("Hello, world. You're at the polls index.")
@@ -214,3 +204,21 @@ def snippet_detail(request, pk, format=None):
     elif request.method == 'DELETE':
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+### USING GENERIC CLASS BASE
+
+class ListadoUsuarios(generics.ListCreateAPIView):
+    queryset = Api.objects.all()
+    serializer_class = UserDataSerializer
+
+class DetallesUsuario(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Api.objects.all()
+    serializer_class = UserDataSerializer
+
+class UserList(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+class UserDetail(generics.RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer    

@@ -12,11 +12,25 @@ class Api(models.Model):
     ciudad = models.CharField(db_column='Ciudad', max_length=50, db_collation='SQL_Latin1_General_CP1_CI_AS', blank=True, null=True)  # Field name made lowercase.
     estado = models.CharField(db_column='Estado', max_length=50, db_collation='SQL_Latin1_General_CP1_CI_AS', blank=True, null=True)  # Field name made lowercase.
     codigopostal = models.CharField(db_column='CodigoPostal', max_length=10, db_collation='SQL_Latin1_General_CP1_CI_AS', blank=True, null=True)  # Field name made lowercase.
+    region = models.CharField(db_column='Region', max_length=100, db_collation='SQL_Latin1_General_CP1_CI_AS', blank=True, null=True)  # Field name made lowercase.
+    '''
+    Cada escritura en la tabla estara relaciona con el usuario que la creo.
+    Solo los usuarios logeados podran insertar informacion 
+    Solo el creador podra borrar o actualizar 
+    Ls usuarios no logeados solo podran ver.
+    '''
+    
+    '''
+    El campo OWNER conecta al usuario con cada uno de los items de la BD que a creado
+    '''
+    owner = models.ForeignKey('auth.User', related_name='user_data', on_delete=models.CASCADE, default = 0)
 
     class Meta:
         # ordering le indica al ORm que cuando se consulte ordene por el campo que se le paso en la tupla. 
         ordering = ('nombre',)
-        managed = False
+        # Paara que el ORM de Django sea capaz de manipular las tablas de la legacy BD es necesario que 
+        # el campo manage = True, si esta en false el ORM no puede hacer modicaciones a las tablas. 
+        managed = True
         db_table = 'nk_tb_crmAPI'
     
     def __str__(self):

@@ -211,6 +211,9 @@ class ListadoUsuarios(generics.ListCreateAPIView):
     queryset = Api.objects.all()
     serializer_class = UserDataSerializer
 
+    '''def perform_create(self, serializer):
+    serializer.save(owner=self.request.user)'''
+
 class DetallesUsuario(generics.RetrieveUpdateDestroyAPIView):
     queryset = Api.objects.all()
     serializer_class = UserDataSerializer

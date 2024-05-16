@@ -23,7 +23,7 @@ class Api(models.Model):
     '''
     El campo OWNER conecta al usuario con cada uno de los items de la BD que a creado
     '''
-    owner = models.ForeignKey('auth.User', related_name='user_data', on_delete=models.CASCADE, default = 0)
+    owner = models.ForeignKey('auth.User', related_name='user_data', on_delete=models.CASCADE, blank=True, null=True)
 
     class Meta:
         # ordering le indica al ORm que cuando se consulte ordene por el campo que se le paso en la tupla. 

@@ -41,7 +41,7 @@ def api_html(request):
 		return render(request,'api_html.html',{'api':api})
 	else:
 		messages.error(request, 'You Must Be Authenticated To Access Here!...')
-		return redirect('saludo')
+		return redirect('/')
 
 
 '''
@@ -225,3 +225,12 @@ class UserList(generics.ListAPIView):
 class UserDetail(generics.RetrieveAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer    
+
+def uix(request):
+	if request.user.is_authenticated:
+		#See the records
+		api = Api.objects.all()
+		return render(request,'uix.html',{'api':api})
+	else:
+		messages.error(request, 'You Must Be Authenticated To Access Here!...')
+		return redirect('saludo')

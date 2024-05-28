@@ -5,6 +5,7 @@ from nk_api import views
 urlpatterns = [
     path("", views.index, name="index"),
     path("api-html", views.api_html, name="api-html"),
+    path("uix", views.uix, name="uix"),
     #### STORE PROCEDURES ###
     path("store-proc", views.store_proc, name="store-proc"),
     path("create-proc", views.create_store_get_users, name="create-proc"),

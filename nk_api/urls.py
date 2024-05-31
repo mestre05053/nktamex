@@ -5,7 +5,6 @@ from nk_api import views
 urlpatterns = [
     path("", views.index, name="index"),
     path("api-html", views.api_html, name="api-html"),
-    path("uix", views.uix, name="uix"),
     #### STORE PROCEDURES ###
     path("store-proc", views.store_proc, name="store-proc"),
     path("create-proc", views.create_store_get_users, name="create-proc"),
@@ -21,7 +20,7 @@ urlpatterns = [
     path('user-detail/<int:pk>',views.user_detail, name='user-detail'),
     #### THIS IS THE WAY #### Learning www.django-rest-framework.org/tutorial/2-requests-and-responses/
     path('snippets/',views.snippet_list, name='snippet'),
-    path('snippet/<int:pk>',views.snippet_detail, name='snippet_detail'),
+    path('snippets/<int:pk>',views.snippet_detail, name='snippet_detail'),
     #### CLASS BASE 
     path('users-list/', views.ListadoUsuarios.as_view(), name='users-list'),
     path('users-list/<int:pk>', views.DetallesUsuario.as_view(), name='detail-user'),
